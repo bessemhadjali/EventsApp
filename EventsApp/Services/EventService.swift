@@ -13,6 +13,7 @@ protocol EventServiceProtocol {
     func perform(eventAction: EventService.EventAction, eventDataInput: EventService.EventDataInput)
     func getEvents() -> [Event]
     func getEvent(_ id: NSManagedObjectID) -> Event?
+    func deleteAllEvent()
 }
 
 final class EventService: EventServiceProtocol {
@@ -60,6 +61,10 @@ final class EventService: EventServiceProtocol {
     
     func getEvent(_ id: NSManagedObjectID) -> Event? {
         return coreDataManager.get(with: id)
+    }
+    
+    func deleteAllEvent() {
+        coreDataManager.deleteAll(object: Event.self)
     }
         
 }

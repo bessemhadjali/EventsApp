@@ -56,5 +56,21 @@ final class CoreDataManager {
         }
     }
     
+    func deleteAll<Object: NSManagedObject>(object: Object.Type) {
+        let fetchRequest =  NSFetchRequest<Object>(entityName: "\(object.self)")
+        do {
+            // Fetch Data
+            let objects = try context.fetch(fetchRequest)
+            
+            // Delete Data
+            _ = objects.map({context.delete($0)})
+            
+            // Save Data
+            save()
+        } catch {
+            print("Deleting Error: \(error)")
+        }
+    }
+    
 
 }

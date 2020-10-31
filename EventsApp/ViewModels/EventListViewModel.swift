@@ -38,6 +38,12 @@ final class EventListViewModel {
         }
         onUpdate()
     }
+    
+    func deleteAll() {
+        eventService.deleteAllEvent()
+        cells = []
+        onUpdate()
+    }
     var rows: Int {
         cells.count
     }
@@ -49,6 +55,10 @@ final class EventListViewModel {
     func tappedAddEvent() {
         print("Tapped add event")
         coordinator?.startAddEvent()
+    }
+    
+    func tappedDeleteAllButton() {
+        deleteAll()
     }
     
     func didSelectRow(at indexPath: IndexPath) {

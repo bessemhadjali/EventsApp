@@ -36,8 +36,11 @@ class EventListViewController: UIViewController {
     private func setupView() {
         let plusImage = UIImage(systemName: "plus.circle.fill")
         let barButtonItem = UIBarButtonItem(image: plusImage, style: .plain, target: self, action: #selector(tappedAddEventButton))
+        let deleteButtonItem = UIBarButtonItem(title: "Delete All", style: .plain, target: self, action: #selector(tappedDeleteAllButton))
         barButtonItem.tintColor = .primary
+        deleteButtonItem.tintColor = .primary
         navigationItem.rightBarButtonItem = barButtonItem
+        navigationItem.leftBarButtonItem = deleteButtonItem
         navigationItem.title = eventListVM.title
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -48,6 +51,10 @@ class EventListViewController: UIViewController {
     
     @objc private func tappedAddEventButton() {
         eventListVM.tappedAddEvent()
+    }
+    
+    @objc private func tappedDeleteAllButton() {
+        eventListVM.tappedDeleteAllButton()
     }
     
     
